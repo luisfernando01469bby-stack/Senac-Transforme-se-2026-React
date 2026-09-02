@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client'
 import { install } from '@twind/core'
 import presetAutoprefix from '@twind/preset-autoprefix'
 import presetTailwind from '@twind/preset-tailwind'
+import { BrowserRouter } from 'react-router'
 
 import './index.css'
 import App from './App.jsx'
@@ -29,6 +30,8 @@ install({
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <BrowserRouter>
     <App />
-  </StrictMode>,
+    </BrowserRouter>
+  </StrictMode>
 )

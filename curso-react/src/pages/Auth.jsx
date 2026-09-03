@@ -2,19 +2,14 @@ import { useState } from 'react';
 import {Link} from 'react-router'
 
 function Auth() {
-    const [batatinha, setbatatinha] = useState(2);
 
-    function sub(){
-        setbatatinha(batatinha - 1)
-    }
+    const [email, setEmail] = useState("")
+    const [senha, setSenha] = useState("")
+    
     return (
         <>
             <nav className=" p-3 shadow-md">
                 <Link className="p-2 mr-2 hover:bg-primary" to="/">Voltar</Link>
-
-                <div className="bg-red-100 rounded-full p-2" onClick ={sub}>-</div>
-                {batatinha}
-                 <div className="bg-green-100 rounded-full p-2" onClick ={() =>setbatatinha(batatinha +1)}>+</div>
             </nav>
 
 
@@ -22,9 +17,9 @@ function Auth() {
                 <form className='flex flex-col gap-[20]'>
                     <h2 className="font-size">Login</h2>
 
-                    Email: <input id="iEmailLogin" placeholder="Digite seu email cadastrado" />
+                    Email: <input type="email" value={email} placeholder="Digite seu email cadastrado" onChange={(e) => setEmail(e.target.value)} /> {email}
 
-                    Senha: <input className="mb-4" id="iLoginpass" placeholder="Digite sua senha cadastrada" />
+                    Senha: <input type="senha" value={senha} placeholder="Digite sua senha cadastrada" onChange={(e) => setSenha(e.target.value)} /> {senha}
 
                     <a id="formLogin">Entrar</a>
                 </form>

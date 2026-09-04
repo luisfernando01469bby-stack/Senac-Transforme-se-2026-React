@@ -1,10 +1,34 @@
 import { useState } from 'react';
-import {Link} from 'react-router'
+import {Link, useNavigate} from 'react-router'
 
 function Auth() {
 
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
+    const [mensagem, setmensagens] = useState('')
+
+    const nav = useNavigate()
+
+    function handleLogin(){
+        const users = JSON.parse(localStorage.getItem('users'))
+        let user = users.find(u => {
+            return u.email ==email
+        }) 
+
+        if(!user){
+        setmensagens("Usuario não encontrado")                       //os estudantes irão fazer uma useSTate de mensagem 
+            return
+        }
+
+        if(user.senha == pass){
+        console.log("usuario logado")
+            localStorage.setItem("logado", JSON.stringify(user))
+            nav("/painel")
+        
+        }else{
+        setmensagens("Senha incorreta")                                   //outra mensagem usando a mesma useState de mensagem
+        }
+    }
     
     return (
         <>
@@ -21,7 +45,7 @@ function Auth() {
 
                     Senha: <input type="senha" value={senha} placeholder="Digite sua senha cadastrada" onChange={(e) => setSenha(e.target.value)} /> {senha}
 
-                    <a id="formLogin">Entrar</a>
+                    <a onClick={handleLogin}>Entrar</a>
                 </form>
             </div>
         </>

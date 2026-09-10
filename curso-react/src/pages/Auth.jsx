@@ -20,7 +20,7 @@ function Auth() {
             return
         }
 
-        if(user.senha == pass){
+        if(user.senha == senha){
         console.log("usuario logado")
             localStorage.setItem("logado", JSON.stringify(user))
             nav("/painel")
@@ -45,7 +45,7 @@ function Auth() {
 
                     Senha: <input type="senha" value={senha} placeholder="Digite sua senha cadastrada" onChange={(e) => setSenha(e.target.value)} /> {senha}
 
-                    <a onClick={handleLogin}>Entrar</a>
+                    <a to="/Painel" onClick={handleLogin}>Entrar</a>
                 </form>
             </div>
         </>

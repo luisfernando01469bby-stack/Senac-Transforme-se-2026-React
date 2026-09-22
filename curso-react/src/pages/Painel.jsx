@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { supabase } from '../../utils/supabase';
 
 function Painel() {
     const [modal, setModal] = useState(false) //bollean
@@ -7,6 +8,8 @@ function Painel() {
     const [logado, setLogado] = useState({})
     const [isEdit, setIsEdit] = useState(false)
     const [index, setIndex] = useState(-1)
+    const [spiner, setSpiner] = useState(false)
+    const [msg, setMsg] = useState('')
 
     useEffect(
         () => {
@@ -38,23 +41,20 @@ function Painel() {
         localStorage.setItem('users', JSON.stringify(newUsers))
     }
 
-    function handleRegister() {
-        let newUsers = []
-        if(index != -1 ){
-            newUsers = [... users]
-            newUsers[index] = user;
-        }else{
-            newUsers = [...users, user]
-        }
-       
-        setUsers(newUsers)
-        localStorage.setItem('users', JSON.stringify(newUsers))
+    async function handleRegister() {
+        setSpiner(true)
+        const { data: authData, error: authError } = await supabase.auth.signUp({
+            email: user.email,
+            password: user.senha
+        });
 
-        setUser({})
-        setModal(false)
-        setIndex(-1)
-        setIsEdit(false)
-    }
+        if(authError){
+            setMsg(authError)
+            setSpiner(false)
+            return;
+        }
+        setSpiner(false)
+        }
 
     return (<>
         <h3>Bem vindo, {logado?.nome}</h3>
@@ -82,7 +82,7 @@ function Painel() {
                         Email: <input value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} placeholder="Digite seu melhor email" />
                         Senha: <input onChange={(e) => setUser({ ...user, senha: e.target.value })} placeholder="Letra maiuscula e números" />
                         Data de nascimento: <input value={user.nascimento} onChange={(e) => setUser({ ...user, nascimento: e.target.value })} type="date" />
-                        <a onClick={handleRegister} className="bg-green-500 rounded-full">Salvar</a>
+                        <a onClick={handleRegister} className="bg-green-500 rounded-full">{spiner? '...':'Salvar'}</a> {msg}
                         {index != -1 && (<a onClick={() => setIsEdit(false)} className="bg-red-500 rounded-full ">Cancelar</a>)}
 
                     </form>): //else 

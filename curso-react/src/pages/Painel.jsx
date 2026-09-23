@@ -49,10 +49,40 @@ function Painel() {
         });
 
         if(authError){
-            setMsg(authError)
+            console.log(authError.message)
+            setMsg(authError.message)
             setSpiner(false)
             return;
         }
+
+        if(!authData){
+        setMsg("Não foi possivel cadastrar, verifique a internet")
+        setSpiner(false)
+        return;
+        }
+
+        const { data: loginData, error: loginError} = await supabase.auth.signInWithPassword({ 
+            email: user.email,
+            password: user.senha
+        });
+
+        const { error: profileError } = await supabase
+        .from('profiles')
+        .insert({
+            user_id: loginData.user.id,
+            full_name: user.nome,
+            birth: user.nascimento,
+            cpf: user.cpf
+        });
+
+        if(profileError){
+        setMsg(profileError.message)
+        setSpiner(false)
+        return;
+        }
+
+
+
         setSpiner(false)
         }
 
@@ -82,6 +112,7 @@ function Painel() {
                         Email: <input value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} placeholder="Digite seu melhor email" />
                         Senha: <input onChange={(e) => setUser({ ...user, senha: e.target.value })} placeholder="Letra maiuscula e números" />
                         Data de nascimento: <input value={user.nascimento} onChange={(e) => setUser({ ...user, nascimento: e.target.value })} type="date" />
+                        CPF:<input value={user.cpf} onChange={(e) => setUser({ ...user, cpf: e.target.value })} type="text" placeholder="Digite seu CPF completo" />
                         <a onClick={handleRegister} className="bg-green-500 rounded-full">{spiner? '...':'Salvar'}</a> {msg}
                         {index != -1 && (<a onClick={() => setIsEdit(false)} className="bg-red-500 rounded-full ">Cancelar</a>)}
 

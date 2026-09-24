@@ -20,9 +20,17 @@ function Painel() {
     );
 
     useEffect(() => {
-        const usersTemp = JSON.parse(localStorage.getItem('users'))
-        if (usersTemp) setUsers(usersTemp)
+       loadUsers()
     }, [])
+
+    async function loadUsers(){
+        const {data, error} = await supabase.from('profiles').select('*')
+        if(error){
+            setMsg(error.mesage)
+            return;
+        }
+        setUsers(data)
+    }
 
 
     function updateUser(indice){
@@ -42,6 +50,7 @@ function Painel() {
     }
 
     async function handleRegister() {
+        setMsg('')
         setSpiner(true)
         const { data: authData, error: authError } = await supabase.auth.signUp({
             email: user.email,
@@ -70,21 +79,22 @@ function Painel() {
         .from('profiles')
         .insert({
             user_id: loginData.user.id,
-            full_name: user.nome,
+            name: user.nome,
+            email: user.email,
             birth: user.nascimento,
             cpf: user.cpf
         });
 
         if(profileError){
-        setMsg(profileError.message)
-        setSpiner(false)
-        return;
+            setMsg(profileError.message)
+            setSpiner(false)
+            return;
         }
 
 
-
+        setMsg('cadastrado com suceesso!')
         setSpiner(false)
-        }
+    }
 
     return (<>
         <h3>Bem vindo, {logado?.nome}</h3>
@@ -136,13 +146,18 @@ function Painel() {
             <thead>
                 <th>Nome</th>
                 <th>Email</th>
-                <th>Ações</th>
+                <th>Data de nascimento</th>
+                <th>CPF</th>
+                <th>Cargo</th>
             </thead>
             <tbody className="font-secondary">
                 {users.map( (u,i) => (
                     <tr>
-                        <td>{u.nome}</td>
-                        <td>{u.email}</td> 
+                        <td>{u.name}</td>
+                        <td>{u.email}</td>
+                        <td>{u.birth}</td> 
+                        <td>{u.cpf}</td>
+                        <td>{u.position}</td>
                         <td>
                             <a className="cursor-pointer px-3 mx-4 hover:shadow shadow-md text-white rounded-full bg-green-500" onClick={() => updateUser(i)}>V</a>
                             <a className="cursor-pointer px-3 mx-4 hover:shadow shadow-md text-white rounded-full bg-red-500" onClick={() => deleteUser(i)}>X</a>
@@ -156,6 +171,7 @@ function Painel() {
         <a onClick={() => {
             setModal(true)
             setIsEdit(true)
+            setMsg('')
         }} 
     className="rounded-full bg-primary text-white px-4 py-3 fixed bottom-0 right-0"> + </a>
 

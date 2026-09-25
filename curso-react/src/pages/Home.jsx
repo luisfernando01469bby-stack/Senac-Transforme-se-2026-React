@@ -4,7 +4,7 @@ function Home() {
         <nav className="py-2 px-4 flex items-center fixed top-0 w-full bg-primary shadow-md">
             <a className="p-2 mr-2 hover:bg-primary" href="#prices">Preços</a>
             <a className="p-2 mr-2 hover:bg-primary" href="#features">Benefícios</a>
-            <Link className="p-2 bg-pr rounded text-white ml-auto mr-5 hover:shadow-inner" to="/auth">Acessar</Link>
+            <Link className="p-2 bg-pr rounded text-white ml-auto mr-5 hover:shadow-inner" to="/auth">Acessar</Link> 
         </nav>
 
         <main>

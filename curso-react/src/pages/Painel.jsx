@@ -58,11 +58,11 @@ function Painel() {
         loadUsers()
     }
 
-    async function deleteUser() {
+    async function deleteUser(index) {
         const { error } = await supabase
             .from('profiles')
             .delete(user)
-            .eq('id', 'index')
+            .eq('id', index)
 
         if (error) {
             setMsg(error.message)
@@ -70,7 +70,6 @@ function Painel() {
         }
 
         setMsg("Usuario apagado")
-        setSpiner(false)
         loadUsers()
     }
 

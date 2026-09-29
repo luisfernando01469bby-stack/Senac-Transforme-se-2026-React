@@ -1,17 +1,17 @@
 import {Link} from 'react-router'
 function Home() {
     return (<>
-        <nav className="py-2 px-4 flex items-center fixed top-0 w-full bg-primary shadow-md">
-            <a className="p-2 mr-2 hover:bg-primary" href="#prices">Preços</a>
-            <a className="p-2 mr-2 hover:bg-primary" href="#features">Benefícios</a>
-            <Link className="p-2 bg-pr rounded text-white ml-auto mr-5 hover:shadow-inner" to="/auth">Acessar</Link> 
+        <nav className=" flex items-center fixed w-full bg-purple-800 shadow-md">
+            <a className="p-2 mr-2 text-white rounded hover:shadow-inner hover:bg-purple-500" href="#prices">Preços</a>
+            <a className="p-2 mr-2 text-white rounded hover:shadow-inner hover:bg-purple-500" href="#features">Benefícios</a>
+            <Link className="p-2 bg-purple-800 rounded text-white ml-auto mr-5 hover:shadow-inner hover:bg-purple-500" to="/auth">Acessar</Link> 
         </nav>
 
         <main>
             <h2></h2>
             <section id="about">
 
-                <div className="max-w-lg mx-auto py-5">
+                <div className="max-w-lg mx-auto py-5 mt-20 gap-5">
                     <h1 className="text-center mt-5"> Oque é o FALE+?</h1>
                     <div className="flex gap-8 ">
                         <article>

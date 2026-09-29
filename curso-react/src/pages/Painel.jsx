@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from '../../utils/supabase';
+import { ToastSucess } from "../components/Toast";
 
 function Painel() {
     const [modal, setModal] = useState(false) //bollean
@@ -9,7 +10,7 @@ function Painel() {
     const [isEdit, setIsEdit] = useState(false)
     const [index, setIndex] = useState(-1)
     const [spiner, setSpiner] = useState(false)
-    const [msg, setMsg] = useState('')
+    const {msg, setMsg} = useToast()
 
     useEffect(
         () => {
@@ -154,7 +155,7 @@ return (<>
                                 editUser()
                         }}
 
-                            className="bg-green-500 rounded-full">{spiner ? '...' : 'Salvar'}</a> {msg}
+                            className="bg-green-500 rounded-full">{spiner ? '...' : 'Salvar'}</a> 
                         {index != -1 && (<a onClick={() => setIsEdit(false)} className="bg-red-500 rounded-full ">Cancelar</a>)}
 
                     </form>) : //else 
@@ -206,6 +207,8 @@ return (<>
     }}
         className="rounded-full bg-primary text-white px-4 py-3 fixed bottom-0 right-0"> + </a>
 
+
+    <ToastSucess msg={msg}/>
 </>
 )
 }

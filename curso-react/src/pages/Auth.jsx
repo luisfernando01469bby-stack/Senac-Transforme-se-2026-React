@@ -38,14 +38,14 @@ function Auth() {
 
 
             <div className="rounded max-w-lg mx-auto p-6 bg-purple-300 mt-20 gap-5  ">
-                <form className='flex flex-col gap-[20]'>
+                <form className='flex flex-col gap-5 p-5 text-white'>
                     <h2 className="font-size text-white">Login</h2>
 
-                    Email: <input type="email" value={email} placeholder="Digite seu email cadastrado" onChange={(e) => setEmail(e.target.value)} /> {email}
+                    Email: <input className='rounded p-2' type="email" value={email} placeholder="Digite seu email cadastrado" onChange={(e) => setEmail(e.target.value)} /> {email}
 
-                    Senha: <input type="senha" value={senha} placeholder="Digite sua senha cadastrada" onChange={(e) => setSenha(e.target.value)} /> {senha}
+                    Senha: <input className='rounded p-2' type="senha" value={senha} placeholder="Digite sua senha cadastrada" onChange={(e) => setSenha(e.target.value)} /> {senha}
 
-                    <a to="/Painel" onClick={handleLogin}>Entrar</a>
+                    <a className="p-2 bg-purple-800 rounded text-white hover:shadow-inner hover:bg-purple-500" to="/Painel" onClick={handleLogin}>Entrar</a>
                 </form>
             </div>
         </>

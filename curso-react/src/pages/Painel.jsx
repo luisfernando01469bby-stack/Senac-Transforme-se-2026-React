@@ -122,6 +122,7 @@ async function handleRegister() {
 }
 
 return (<>
+<Template></Template>
     <h3>Bem vindo, {logado?.nome}</h3>
 
     {modal && (

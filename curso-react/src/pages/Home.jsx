@@ -1,77 +1,69 @@
-import {Link} from 'react-router'
+import { Template } from '../components/Template';
+
 function Home() {
-    return (<>
-        <nav className=" flex items-center fixed w-full bg-purple-800 shadow-md">
-            <a className="p-2 mr-2 text-white rounded hover:shadow-inner hover:bg-purple-500" href="#prices">Preços</a>
-            <a className="p-2 mr-2 text-white rounded hover:shadow-inner hover:bg-purple-500" href="#features">Benefícios</a>
-            <Link className="p-2 bg-purple-800 rounded text-white ml-auto mr-5 hover:shadow-inner hover:bg-purple-500" to="/auth">Acessar</Link> 
-        </nav>
+    return (
+            <Template>
+                <main>
+                    <h2></h2>
+                    <section id="about">
 
-        <main>
-            <h2></h2>
-            <section id="about">
+                        <div className="max-w-lg mx-auto py-5 mt-20 gap-5">
+                            <h1 className="text-center mt-5"> Oque é o FALE+?</h1>
+                            <div className="flex gap-8 ">
+                                <article>
+                                    <p>
+                                        O fale+ é uma iniciativa voltada ao desenvolvimento da comunicação e da interação social
+                                        para pessoas que sofrem de disfemia, gagueira, oratória e insegurança ao falar se sentirem
+                                        mais seguras. confiantes e interativas.
+                                        Unindo a tecnologia de uma I.A em um app/site dinâmico e intuitivo onde os usuários
+                                        realizarão exercicios para melhorar sua comunicação,
+                                        com aulas, eventos presenciais e online
+                                    </p>
+                                </article>
+                                <article>
+                                    <p>
+                                        o Fale+ precisa de mais Desenvolvimento O fale+ é uma iniciativa voltada ao desenvolvimento
+                                        da comunicação e da interação social
+                                        para pessoas que sofrem de disfemia, gagueira, oratória e insegurança ao falar se sentirem
+                                        mais seguras. confiantes e interativas.
+                                        Unindo a tecnologia de uma I.A em um app/site dinâmico e intuitivo onde os usuários
+                                        realizarão exercicios para melhorar sua comunicação,
+                                        com aulas, eventos presenciais e online
+                                    </p>
 
-                <div className="max-w-lg mx-auto py-5 mt-20 gap-5">
-                    <h1 className="text-center mt-5"> Oque é o FALE+?</h1>
-                    <div className="flex gap-8 ">
-                        <article>
+                                </article>
+                            </div>
+
+                        </div>
+                    </section>
+                    <section id="prices">
+                        <div className="max-w-lg mx-auto py-3" >
+                            <h2>
+                                Preços
+                            </h2>
                             <p>
-                                O fale+ é uma iniciativa voltada ao desenvolvimento da comunicação e da interação social
-                                para pessoas que sofrem de disfemia, gagueira, oratória e insegurança ao falar se sentirem
-                                mais seguras. confiantes e interativas.
-                                Unindo a tecnologia de uma I.A em um app/site dinâmico e intuitivo onde os usuários
-                                realizarão exercicios para melhorar sua comunicação,
-                                com aulas, eventos presenciais e online
+                                Temos um plano <b>Gratuito</b> para incluir a todos o acesso a plataforma, além de assinaturas
+                                mensais
+                                com um ótimo custo benefício bolsas para estudantes de escolas, univesidades
+                                e instituições parceiras que aplicam nosso projeto para alunos que necessitam de um apoio
+                                especializado
                             </p>
-                        </article>
-                        <article>
+                        </div>
+                    </section>
+                    <section id="feature">
+                        <div className="max-w-lg mx-auto py-2">
+                            <h2>
+                                Benefícios
+                            </h2>
                             <p>
-                                o Fale+ precisa de mais Desenvolvimento O fale+ é uma iniciativa voltada ao desenvolvimento
-                                da comunicação e da interação social
-                                para pessoas que sofrem de disfemia, gagueira, oratória e insegurança ao falar se sentirem
-                                mais seguras. confiantes e interativas.
-                                Unindo a tecnologia de uma I.A em um app/site dinâmico e intuitivo onde os usuários
-                                realizarão exercicios para melhorar sua comunicação,
-                                com aulas, eventos presenciais e online
+                                nosso projeto fornece aulas práticas com acompanhamento pofissional, diversas opções de eventos
+                                sociais e profissionais
                             </p>
-
-                        </article>
-                    </div>
-
-                </div>
-            </section>
-            <section id="prices">
-                <div className="max-w-lg mx-auto py-3" >
-                    <h2>
-                        Preços
-                    </h2>
-                    <p>
-                        Temos um plano <b>Gratuito</b> para incluir a todos o acesso a plataforma, além de assinaturas
-                        mensais
-                        com um ótimo custo benefício bolsas para estudantes de escolas, univesidades
-                        e instituições parceiras que aplicam nosso projeto para alunos que necessitam de um apoio
-                        especializado
-                    </p>
-                </div>
-            </section>
-            <section id="feature">
-                <div className="max-w-lg mx-auto py-2">
-                    <h2>
-                        Benefícios
-                    </h2>
-                    <p>
-                        nosso projeto fornece aulas práticas com acompanhamento pofissional, diversas opções de eventos
-                        sociais e profissionais
-                    </p>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-
-        </footer>
-
-    </>);
+                        </div>
+                    </section>
+                </main>
+            </Template>
+            );
 }
 
 export default Home;
